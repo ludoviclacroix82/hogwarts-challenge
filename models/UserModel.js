@@ -23,10 +23,15 @@ const UserSchema = new Schema({
         required: true,
         enum: ['Gryffondor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
     },
+    role:{
+        type: String,
+        required: true,
+        default: 'Student',
+        enum: ['Student', 'Professor']},
     created_at: { 
         type: Date, 
         default: Date.now 
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema, 'users');
