@@ -1,10 +1,12 @@
-const { log } = require("console")
+// routes/userRoutes
+const express = require("express");
+const router = express.Router();
 
-module.exports = (app) => {
+const { create } = require("../controllers/UserController")
 
-    app.get("/", (req, res) => {
+router.post("/register", create)
+router.get("/", (req, res) => {
+    res.send("Bonjour")
+})
 
-        res.send('bonjour')
-    })
-
-}
+module.exports = router
