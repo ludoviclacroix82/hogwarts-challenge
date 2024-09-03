@@ -51,12 +51,12 @@ const viewId = async (req, res) => {
         const { id } = req.params
 
         const user = await User.findOne({ email: email })
-        const userFind = await User.find({ house: user.house })
+        const userFind = await User.findOne({ house: user.house })
 
         if (user.role === "Professor" || user.house === userFind.house)
             res.send(userFind)
-         else 
-            res.status(403).json({ message: "You are not authorized viewing of users" })    
+        else
+            res.status(403).json({ message: "You are not authorized viewing of users" })
 
     } catch (error) {
         res.status(500).json({ message: "An error occurred" })
@@ -71,15 +71,17 @@ const viewId = async (req, res) => {
  * @passwordHash - Hash the password function hashPwd() [helpers]
  */
 const create = async (req, res) => {
+
     const { email, user_name, password, house } = req.body
 
     try {
 
-        const userExists = await User.findOne({$or: [{ email: email },{ user_name: user_name }]
-          });
+        const userExists = await User.findOne({
+            $or: [{ email: email }, { user_name: user_name }]
+        });
 
         if (userExists) {
-            return res.status(400).json({ message: "Email or user Nmae already in use" })
+            return res.status(400).json({ message: "Email or user Name already in use" })
         }
 
         const passwordHash = await hashPwd(password) // hash le password
@@ -121,12 +123,89 @@ const login = async (req, res) => {
 
 
     } catch (error) {
-
+        res.status(500).json({ message: "An error occurred" })
     }
+}
+
+const promoteUser = async (req, res) => {
+
+    /** 
+     * Destructure email and content from the request body, and message ID from the request parameters.
+     * @type {string} email - The email of the user.
+     * @type {string} id  - the id of the users
+     */
+    const { email } = req.body
+    const { id } = req.params
+
+    try {
+
+        const user = await User.findOne({ email: email })
+        const userPromote = await User.findOne({ _id : id  })
+
+        if(user.role === "Professor" && userPromote.email != user.email){
+
+            if(userPromote.role === "Professor"){
+                res.status(401).json({ message: "This user is already a professor." })
+            }
+            
+            const promote = await User.updateOne(
+                { _id: id },
+                { $set: { role : 'Professor'} })
+                
+            res.status(200).json({ message: "This user is a professor." })
+        }else{
+            res.status(401).json({ message: "You are not authorized" })
+        }
+
+        
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred" })
+    }
+
+}
+
+const demoteUser = async (req, res) => {
+
+    /** 
+     * Destructure email and content from the request body, and message ID from the request parameters.
+     * @type {string} email - The email of the user.
+     * @type {string} id  - the id of the users
+     */
+    const { email } = req.body
+    const { id } = req.params
+
+    try {
+
+        const user = await User.findOne({ email: email })
+        const userPromote = await User.findOne({ _id : id  })
+
+        if(user.role === "Professor" && userPromote.email != user.email){
+
+            if(userPromote.role === "Student"){
+                res.status(401).json({ message: "This user is already a Student." })
+            }
+            
+            const promote = await User.updateOne(
+                { _id: id },
+                { $set: { role : 'Student'} })
+                
+            res.status(200).json({ message: "This user is a Student." })
+        }else{
+            res.status(401).json({ message: "You are not authorized" })
+        }
+
+        
+    } catch (error) {
+        res.status(500).json({ message: "An error occurred" })
+    }
+
 }
 
 module.exports = {
     create,
     login,
     view,
+    viewId,
+    promoteUser,
+    demoteUser,
 }
