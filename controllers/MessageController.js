@@ -153,7 +153,7 @@ const del = async (req, res) => {
          if(user.role === "Professor"){
 
             const deleteMessage = await Message.deleteOne({_id: id })
-            res.status(200).json({ message: "Message deleted successfully" });
+             res.status(200).json({ message: "Message deleted successfully" })
 
          }else{
             res.status(403).json({ message: "You are not authorized to delete this message" })

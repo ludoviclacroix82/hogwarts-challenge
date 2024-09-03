@@ -12,6 +12,7 @@ router.post ('/lobby' , authenticateJWT, MesssageController.create)
 
 router.get('/lobby',authenticateJWT,MesssageController.view)
 router.get('/lobby/:id',authenticateJWT,MesssageController.viewId)
+router.get('/users',authenticateJWT,UserController.view)
 
 router.put('/lobby/:id',authenticateJWT,MesssageController.edit)
 
