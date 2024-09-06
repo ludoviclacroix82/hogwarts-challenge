@@ -11,15 +11,27 @@
       <!-- Menu -->
       <div class="flex space-x-6">
         <RouterLink to="/" class="hover:text-gray-400 text-harry-18">Home</RouterLink>
-        <RouterLink to="/lobby" class="hover:text-gray-400 text-harry-18">Lobby</RouterLink>
-        <RouterLink to="/users" class="hover:text-gray-400 text-harry-18">Users</RouterLink>
+        <RouterLink v-if="isAuthenticated" to="/lobby" class="hover:text-gray-400 text-harry-18">Lobby</RouterLink>
+        <RouterLink v-if="isAuthenticated" to="/users" class="hover:text-gray-400 text-harry-18">Users</RouterLink>
     </div>
 
       <!-- Login et Register -->
       <div class="flex space-x-4">
-        <RouterLink to='/login' class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 text-harry-12">Login</RouterLink>
-        <RouterLink to='/register' class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 text-harry-12">Registe</RouterLink>
+        <RouterLink v-if="!isAuthenticated" to='/login' class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 text-harry-12">Login</RouterLink>
+        <RouterLink v-if="isAuthenticated" to='/logout' class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 text-harry-12">Logout</RouterLink>
+        <RouterLink  v-if="isAuthenticated" to='/register' class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 text-harry-12">Registe</RouterLink>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isAuthenticated: !!sessionStorage.getItem('User')
+    }
+  }
+}
+
+</script>
