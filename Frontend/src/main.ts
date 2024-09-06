@@ -1,15 +1,19 @@
 // Main.ts
 
-import { createApp } from 'vue';
-import App from './App.vue';
-import { createRouter, createWebHistory } from 'vue-router'; 
-import {routes} from './routes/routes';
+import { createApp } from 'vue'
+import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router' 
+import { routes } from './routes/routes'
+
+
+const app = createApp(App)
 
 const router = createRouter({
     history: createWebHistory(),
     routes
-});
+})
 
-const app = createApp(App);
-app.use(router); 
-app.mount('#app');
+
+app.use(router)
+app.mount('#app')
+
