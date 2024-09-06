@@ -13,6 +13,17 @@ const router = createRouter({
     routes
 })
 
+// Ajoutez les guards de navigation
+router.beforeEach((to, from, next) => {
+    const isAuthenticated = !!sessionStorage.getItem('User'); // Remplacez par votre logique d'authentification
+
+    if (to.meta.requiresAuth && !isAuthenticated) {
+        next({ path: '/login' })
+    } else {
+        next()
+    }
+});
+
 
 app.use(router)
 app.mount('#app')
