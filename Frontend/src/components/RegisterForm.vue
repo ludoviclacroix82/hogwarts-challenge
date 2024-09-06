@@ -1,7 +1,9 @@
 <template>
     <div class=" text-white flex flex-col items-center justify-center" >
     <h2 class="text-2xl font-bold mb-6 text-center text-harry-25 mt-16">Inscription</h2>
+        
         <form @submit.prevent="submitForm" class="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
+            <div class="mb-4">{{ message }}</div>
             <div class="mb-4">
                 <label for="email" class="block text-white text-harry-12">Email</label>
                 <input type="email" v-model="email" value="ludo@gmail.com" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
@@ -27,13 +29,17 @@ export default {
     return {
       user_name: '',
       email: '',
-      password:''
+      password:'',
+      message:'',
+      status:'',
     };
   },
   methods: {
-    submitForm() {
-      const user = new User(this.email,this.password,this.user_name);
-      user.registerUser();
+    async submitForm() {
+      const user = new User(this.email,this.password,this.user_name)
+      const response = await user.registerUser()
+      this.message = response.data.message
+      this.status = response.status
     }
   }
 };
