@@ -23,8 +23,18 @@ class User {
     }
 
 
-    public loginUser() {
-        //
+    public async loginUser() {
+        try {
+            const response = await axios.post(`${this.urlApi}/login`, {
+                email: this.email,
+                password: this.password,
+            })
+            console.log(response.data)
+            
+            return response
+        } catch (error : any) {
+            return error.response
+        }
     }
 
     public async registerUser() {
