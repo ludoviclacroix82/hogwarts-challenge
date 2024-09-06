@@ -35,9 +35,11 @@ class User {
                 password: this.password,
                 house : this.houseRandom()
             })
-            console.log('User registered:', response.data)
-        } catch (error) {
-            console.error('Error registering user:', error)
+            console.log(response.data)
+            
+            return response
+        } catch (error : any) {
+            return error.response
         }
     }
 
