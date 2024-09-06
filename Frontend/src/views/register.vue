@@ -14,10 +14,7 @@
     },
     data() {
       return {}
-    },
-    computed: {},
-    mounted() {},
-    methods: {}
+    }
   }
 </script>
 
