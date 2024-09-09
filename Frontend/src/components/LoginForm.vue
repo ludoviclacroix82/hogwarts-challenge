@@ -41,7 +41,7 @@ export default {
 
       // Réinitialiser les champs du formulaire
       if(this.status === 200){
-        this.$router.replace({ path: '/lobby' });
+        this.$router.push('/lobby'); 
       }      
     }
   }

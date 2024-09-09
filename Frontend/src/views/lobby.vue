@@ -1,8 +1,6 @@
 <template>
     <div class="container mx-auto p-4">
-      <!-- Row de boîtes générées dynamiquement -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        
         <div 
             v-for="(house, index) in houses" 
             :key="index" 
@@ -27,10 +25,10 @@
   </template>
 
 <script>
-import imgGryffondor from '@/components/icons/Gryffindor.png'
-import imgHufflepuff from '@/components/icons/Hufflepuff.png'
-import imgRavenclaw from '@/components/icons/Ravenclaw.png'
-import imgSlytherin from '@/components/icons/Slytherin.png'
+import imgGryffondor from '../../public/assets/images/Gryffindor.png'
+import imgHufflepuff from '../../public/assets/images/Hufflepuff.png'
+import imgRavenclaw from '../../public/assets/images/Ravenclaw.png'
+import imgSlytherin from '../../public/assets/images/Slytherin.png'
 
 export default {
   data() {
