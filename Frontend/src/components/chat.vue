@@ -1,7 +1,6 @@
 <template>
 <div class="flex flex-col h-full w-[60%]">
     <div class="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100 scroll-smooth">
-        {{ noHouse }}
         <div class="space-y-4">
             <div v-for="message in messages" class="bg-gray-700 p-3 rounded-lg flex justify-between items-center">
         <div class="text-left">
@@ -33,18 +32,19 @@ export default {
     return {
       messages: '',
       content: '',
-      noHouse:''
     }
   },
   async created() {
     const house = this.$route.params.house;
+    const user = sessionStorage.getItem('User')
+    const user_data = JSON.parse(user)
 
     const messageInstance = new Message()
     const messages = await messageInstance.getMessage(house)
     if(messages)
         this.messages = messages.data
     else
-        this.$router.push('/lobby'); 
+        this.$router.push(`/lobby/${user_data.value.house}`); 
   },
   methods: {
     async submitForm() {
