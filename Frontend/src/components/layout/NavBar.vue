@@ -5,6 +5,7 @@
       <div class="flex items-center">
         <img src="../../../public/assets/images/Hogwarts.png" alt="Logo" class="h-11 w-11 mr-3">
         <span class="text-xl text-harry-25">Hogwarts</span>
+        <span class="text-xl text-harry-18" v-if ="(user_role)"> &nbsp; | &nbsp;{{ user_role }} {{ user_name }}</span>
       </div>
 
       <!-- Menu -->
@@ -25,12 +26,23 @@
 </template>
 
 <script>
+import User from '@/Models/UserModel';
+
 
 export default {
   data() {
     return {
-      isAuthenticated: !!sessionStorage.getItem('User')
+      isAuthenticated: !!sessionStorage.getItem('User'),
+      user_name :'',
+      user_role :''
     }
-  }  
+  },
+  created() {
+    const user = JSON.parse(sessionStorage.getItem('User'))
+    if(user){
+      this.user_name = user.value.user_name
+    this.user_role = user.value.role
+    }    
+  }, 
 }
 </script>

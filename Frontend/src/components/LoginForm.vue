@@ -12,7 +12,7 @@
                 <label for="password" class="block text-white text-harry-12">Mot de passe</label>
                 <input type="password" v-model="password"  class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black">
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 text-harry-12">S'inscrire</button>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 text-harry-12">login</button>
         </form>
     </div>
 </template>
