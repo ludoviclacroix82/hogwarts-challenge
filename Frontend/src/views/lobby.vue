@@ -4,10 +4,10 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         
         <div 
-          v-for="(house, index) in houses" 
-          :key="index" 
-          class="box bg-gray-800 p-4 text-white text-center h-[80dvh]"
-          :style="{ backgroundColor: house.color }" 
+            v-for="(house, index) in houses" 
+            :key="index" 
+            class="box bg-gray-800 p-4 text-white text-center h-[80dvh]"
+            :style="{ backgroundColor: house.color }" 
         >
         <img 
             :src="house.image" 
