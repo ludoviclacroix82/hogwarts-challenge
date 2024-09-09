@@ -72,13 +72,11 @@ class User {
         }
     }
 
-    public houseRandom() {
-
-        const houses: string[] = ['Gryffondor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
-        let numberRandom = Math.round(Math.random() * houses.length - 1)
-
-        return houses[numberRandom]
-
+    public houseRandom(): string {
+        const houses: string[] = ['Gryffondor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
+        let numberRandom = Math.floor(Math.random() * houses.length)
+    
+        return houses[numberRandom];
     }
 
     public logout(){

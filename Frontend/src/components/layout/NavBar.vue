@@ -3,7 +3,7 @@
     <div class="container mx-auto flex justify-between items-center">
       <!-- Logo avec image -->
       <div class="flex items-center">
-        <img src="../icons/Hogwarts.png" alt="Logo" class="h-11 w-11 mr-3">
+        <img src="../../../public/assets/images/Hogwarts.png" alt="Logo" class="h-11 w-11 mr-3">
         <span class="text-xl text-harry-25">Hogwarts</span>
       </div>
 
