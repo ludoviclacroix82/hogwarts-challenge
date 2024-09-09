@@ -40,7 +40,9 @@ class User {
                 email: response.data.datasUser.email,
                 token: response.data.token,
                 id : response.data.datasUser.id_user,
-                house : response.data.datasUser.house
+                house : response.data.datasUser.house,
+                user_name : response.data.datasUser.user_name,
+                role : response.data.datasUser.role
             }
 
             const dataStorage = {
