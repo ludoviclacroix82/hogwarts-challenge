@@ -35,8 +35,10 @@ export default {
     }
   },
   async created() {
+    const house = this.$route.params.house;
+
     const messageInstance = new Message()
-    const messages = await messageInstance.getMessage()
+    const messages = await messageInstance.getMessage(house)
     this.messages = messages.data
   },
   methods: {

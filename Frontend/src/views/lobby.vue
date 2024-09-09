@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto p-4">
+    <div class="container mx-auto p-4 mt-20">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div 
             v-for="(house, index) in houses" 
@@ -14,7 +14,7 @@
         >
         <a
             :href="`lobby/${house.name}`" 
-            v-if="house_user === house.name"
+            v-if="house_user === house.name ||  user_role === 'Professor'"
             class="text-white px-4 py-2 rounded hover:opacity-90 text-harry-25"
             >
             {{ house.name }}
@@ -56,6 +56,7 @@ export default {
         },
       ],
       house_user: '', 
+      user_role:'',
     };
   },
   async created() {
@@ -63,6 +64,7 @@ export default {
     const user = JSON.parse(sessionStorage.getItem("User"))
     if (user) {
       this.house_user = user.value.house
+      this.user_role = user.value.role
     }
   },
 };

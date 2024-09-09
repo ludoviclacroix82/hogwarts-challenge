@@ -24,13 +24,13 @@ class Message{
         this.updated_at = updated_at
     }
 
-    public async getMessage() {
+    public async getMessage(houseParams : string) {
         try {
             const user = sessionStorage.getItem("User")
             if (user) {
                 const sessionUser = JSON.parse(user)
                 const token = sessionUser.value.token
-                const response = await axios.post(`${this.urlApi}/lobby/view`, {
+                const response = await axios.post(`${this.urlApi}/lobby/view/${houseParams}`, {
                     email: sessionUser.value.email
                 }, {
                     headers: {
