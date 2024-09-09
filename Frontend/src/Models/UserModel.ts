@@ -32,12 +32,23 @@ class User {
             console.log(response.data)
 
             //sessionStorage login
+            const now = new Date()
+            const expire = response.data.expire_token
+            const time = expire.replace('h',"")*60*60*1000 ///milleseconde
+
             const userStorageData = {
                 email: response.data.datasUser.email,
                 token: response.data.token,
-                expire_token : response.data.expire_token
+                id : response.data.datasUser.id_user,
+                house : response.data.datasUser.house
             }
-            sessionStorage.setItem("User", JSON.stringify(userStorageData))
+
+            const dataStorage = {
+                value: userStorageData,
+                expiry: now.getTime() + time
+            }
+
+            sessionStorage.setItem("User", JSON.stringify(dataStorage))
 
             return response
         } catch (error: any) {
@@ -69,6 +80,7 @@ class User {
         return houses[numberRandom]
 
     }
+
 }
 
 export default User
