@@ -81,6 +81,10 @@ class User {
 
     }
 
+    public logout(){
+        sessionStorage.removeItem('User')
+    }
+
 }
 
 export default User
