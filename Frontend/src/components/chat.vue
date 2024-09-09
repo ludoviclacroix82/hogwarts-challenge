@@ -1,6 +1,7 @@
 <template>
 <div class="flex flex-col h-full w-[60%]">
     <div class="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100 scroll-smooth">
+        {{ noHouse }}
         <div class="space-y-4">
             <div v-for="message in messages" class="bg-gray-700 p-3 rounded-lg flex justify-between items-center">
         <div class="text-left">
@@ -31,7 +32,8 @@ export default {
   data() {
     return {
       messages: '',
-      content: ''
+      content: '',
+      noHouse:''
     }
   },
   async created() {
@@ -39,7 +41,10 @@ export default {
 
     const messageInstance = new Message()
     const messages = await messageInstance.getMessage(house)
-    this.messages = messages.data
+    if(messages)
+        this.messages = messages.data
+    else
+        this.$router.push('/lobby'); 
   },
   methods: {
     async submitForm() {
