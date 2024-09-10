@@ -42,6 +42,9 @@ export default {
       // Réinitialiser les champs du formulaire
       if(this.status === 200){
         this.$router.push('/lobby'); 
+        setInterval(() => {
+        location.reload()
+      }, 50)
       }      
     }
   }

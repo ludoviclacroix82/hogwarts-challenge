@@ -37,11 +37,12 @@ export default {
       user_role :''
     }
   },
-  created() {
+  async created() {
     const user = JSON.parse(sessionStorage.getItem('User'))
+    const userLogin = await new User().getUser(user.value.id)
     if(user){
-      this.user_name = user.value.user_name
-    this.user_role = user.value.role
+      this.user_name = userLogin.data.user_name
+      this.user_role = userLogin.data.role
     }    
   }, 
 }

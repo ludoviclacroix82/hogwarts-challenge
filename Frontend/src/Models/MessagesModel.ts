@@ -57,7 +57,8 @@ class Message{
                 const token = sessionUser.value.token
                 const response = await axios.post(`${this.urlApi}/lobby`, {
                     email: sessionUser.value.email,
-                    content : this.content
+                    content : this.content,
+                    house : this.house
                 }, {
                     headers: {
                         'x-auth-token': token

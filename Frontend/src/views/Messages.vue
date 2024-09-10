@@ -23,5 +23,5 @@ export default defineComponent({
 
     return { house};
   }
-});
+})
 </script>

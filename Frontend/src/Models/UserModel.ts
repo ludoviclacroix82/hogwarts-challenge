@@ -34,15 +34,15 @@ class User {
             //sessionStorage login
             const now = new Date()
             const expire = response.data.expire_token
-            const time = expire.replace('h',"")*60*60*1000 ///milleseconde
+            const time = expire.replace('h', "") * 60 * 60 * 1000 ///milleseconde
 
             const userStorageData = {
                 email: response.data.datasUser.email,
                 token: response.data.token,
-                id : response.data.datasUser.id_user,
-                house : response.data.datasUser.house,
-                user_name : response.data.datasUser.user_name,
-                role : response.data.datasUser.role
+                id: response.data.datasUser.id_user,
+                // house: response.data.datasUser.house,
+                // user_name: response.data.datasUser.user_name,
+                // role: response.data.datasUser.role
             }
 
             const dataStorage = {
@@ -77,14 +77,37 @@ class User {
     public houseRandom(): string {
         const houses: string[] = ['Gryffondor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
         let numberRandom = Math.floor(Math.random() * houses.length)
-    
+
         return houses[numberRandom];
     }
 
-    public logout(){
+    public logout() {
         sessionStorage.removeItem('User')
     }
 
+    public async getUser(id: Number) {
+
+        try {
+            const user = sessionStorage.getItem("User")
+            if (user) {
+                const sessionUser = JSON.parse(user)
+                const token = sessionUser.value.token
+                const response = await axios.post(`${this.urlApi}/users/${id}`, {
+                    email: sessionUser.value.email
+                }, {
+                    headers: {
+                        'x-auth-token': token
+                    }
+                })
+                console.log(response) 
+                return response
+            }
+           
+        } catch (error: any) {
+            return error.response
+        }
+
+    }
 }
 
 export default User
