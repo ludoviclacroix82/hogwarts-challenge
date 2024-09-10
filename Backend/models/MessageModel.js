@@ -11,6 +11,10 @@ const UserSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
+    author : {
+        type: String,
+        required: true
+    },
     house: {
         type: String,
         required: true

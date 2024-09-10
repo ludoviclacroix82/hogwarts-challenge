@@ -56,6 +56,7 @@ const authenticateJWT = (req, res, next) => {
     } catch (error) {
         res.status(400).json({ message: 'Jeton non valide' })
     }
+    
 }
 
 module.exports = {
