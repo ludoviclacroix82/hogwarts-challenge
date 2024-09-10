@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import NavBar from './components/layout/NavBar.vue';
-import Footer from './components/layout/Footer.vue';
+import NavBar from './components/layout/NavBar.vue'
+import Footer from './components/layout/Footer.vue'
+
+import { checkSession } from './components/utils/utils';
+
+checkSession()
+
 </script>
 
 <template>
