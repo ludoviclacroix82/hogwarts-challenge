@@ -29,7 +29,6 @@ class User {
                 email: this.email,
                 password: this.password,
             })
-            console.log(response.data)
 
             //sessionStorage login
             const now = new Date()
@@ -66,7 +65,6 @@ class User {
                 password: this.password,
                 house: this.houseRandom()
             })
-            console.log(response.data)
 
             return response
         } catch (error: any) {
@@ -99,7 +97,6 @@ class User {
                         'x-auth-token': token
                     }
                 })
-                console.log(response) 
                 return response
             }
            
