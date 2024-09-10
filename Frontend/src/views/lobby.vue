@@ -1,10 +1,10 @@
 <template>
-    <div class="container mx-auto p-4 mt-20">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="container mx-auto ">
+      <div class="grid grid-cols-1 md:grid-cols-4 ">
         <div 
             v-for="(house, index) in houses" 
             :key="index" 
-            class="box bg-gray-800 p-4 text-white text-center h-[80dvh]"
+            class="box bg-gray-800 p-4 text-white text-center h-[85dvh]"
             :style="{ backgroundColor: house.color }" 
         >
         <img 
@@ -29,6 +29,8 @@ import imgGryffondor from '../../public/assets/images/Gryffindor.png'
 import imgHufflepuff from '../../public/assets/images/Hufflepuff.png'
 import imgRavenclaw from '../../public/assets/images/Ravenclaw.png'
 import imgSlytherin from '../../public/assets/images/Slytherin.png'
+
+import User from '@/Models/UserModel'
 
 export default {
   data() {
@@ -62,9 +64,11 @@ export default {
   async created() {
    
     const user = JSON.parse(sessionStorage.getItem("User"))
+    const userLogin = await new User().getUser(user.value.id)
+
     if (user) {
-      this.house_user = user.value.house
-      this.user_role = user.value.role
+      this.house_user = userLogin.data.house
+      this.user_role = userLogin.data.role
     }
   },
 };
