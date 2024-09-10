@@ -95,7 +95,7 @@ class Message {
         }
     }
 
-    public async update(id : string) {
+    public async update(id : string , content : string) {
         try {
             const user = sessionStorage.getItem("User")
             if (user) {
@@ -103,7 +103,7 @@ class Message {
                 const token = sessionUser.value.token
                 const response = await axios.put(`${this.urlApi}/lobby/${id}`, {
                     email: sessionUser.value.email,
-                    content: this.content,
+                    content: content,
                 }, {
                     headers: {
                         'x-auth-token': token
