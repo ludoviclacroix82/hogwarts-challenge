@@ -1,5 +1,7 @@
 
-
+/**
+ * check session Storage
+ */
 const checkSession = () =>{
     const session = sessionStorage.getItem('User')
 
