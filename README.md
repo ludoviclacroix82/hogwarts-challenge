@@ -1,7 +1,7 @@
-# Hogwarts-Chat
+# Hogwarts-challenge
 
 ## Description
-Hogwarts-Chat est une application de chat en temps réel inspirée de l'univers de Harry Potter. Le projet utilise un backend en Node.js pour gérer l'API et un frontend en Vue.js pour l'interface utilisateur.
+Hogwarts-challenge est une application de chat en temps réel inspirée de l'univers de Harry Potter. Le projet utilise un backend en Node.js pour gérer l'API et un frontend en Vue.js pour l'interface utilisateur.
 
 ## Table des matières
 - Installation
