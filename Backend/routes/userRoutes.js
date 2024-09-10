@@ -10,10 +10,10 @@ router.post("/register", UserController.create)
 router.post("/login", UserController.login)
 router.post ('/lobby' , authenticateJWT, MesssageController.create)
 
-router.get('/lobby',authenticateJWT,MesssageController.view)
-router.get('/lobby/:id',authenticateJWT,MesssageController.viewId)
+router.post('/lobby/view/:house',authenticateJWT,MesssageController.view)
+router.post('/lobby/:id',authenticateJWT,MesssageController.viewId)
 router.get('/users',authenticateJWT,UserController.view)
-router.get('/users/:id',authenticateJWT,UserController.viewId)
+router.post('/users/:id',authenticateJWT,UserController.viewId)
 
 router.put('/lobby/:id',authenticateJWT,MesssageController.edit)
 router.put('/users/:id/promote',authenticateJWT,UserController.promoteUser)

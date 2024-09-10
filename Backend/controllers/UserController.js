@@ -50,10 +50,11 @@ const viewId = async (req, res) => {
         const { email } = req.body
         const { id } = req.params
 
-        const user = await User.findOne({ email: email })
-        const userFind = await User.findOne({ house: user.house })
+        const user = await User.findOne({ _id : id })
+        const userFind = await User.findOne({ _id : id })
 
-        if (user.role === "Professor" || user.house === userFind.house)
+
+        if (user.role === "Professor" || user.house === userFind.house || user.email === userFind.email)
             res.send(userFind)
         else
             res.status(403).json({ message: "You are not authorized viewing of users" })
@@ -111,11 +112,17 @@ const login = async (req, res) => {
         }
 
         const passwordIsOk = await comparPwd(password, user.password) // comprae user inpur pasword & data password user
-        const datasUser = [{ "email": user.email }]
+        const datasUser = {
+            email: user.email,
+            id_user : user._id,
+            house : user.house,
+            user_name : user.user_name,
+            role : user.role
+          }
 
         if (passwordIsOk) {
             const token = createToken(user.user_name) // create de token 
-            return res.status(200).json({ code: 200, message: "login successful", datasUser, token })
+            return res.status(200).json({ code: 200, message: "login successful", datasUser, token ,expire_token : process.env.EXPIRESTOKEN })
 
         } else {
             return res.status(400).json({ message: "login failed" })
