@@ -1,3 +1,5 @@
+
+
 const checkSession = () =>{
     const session = sessionStorage.getItem('User')
 
@@ -5,8 +7,9 @@ const checkSession = () =>{
 
         const sessionParse = JSON.parse(session)
         const currentDate =  new Date().getTime()
+        const expireDate = new  Date(sessionParse.expiry* 1000).getTime()
 
-        if(sessionParse.expiry > currentDate)
+        if(expireDate <= currentDate)
             sessionStorage.removeItem('User')
     }
 }
