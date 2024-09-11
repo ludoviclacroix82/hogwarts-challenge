@@ -7,8 +7,6 @@ Hogwarts-challenge est une application de chat en temps réel inspirée de l'uni
 - Installation
 - Utilisation
 - API
-- Contribuer
-- Licence
 
 ## Installation
 
@@ -71,9 +69,5 @@ L'API backend offre plusieurs endpoints pour interagir avec les données de l'ap
 | /api/users/[id]/demote  | POST   | id           | x-auth-token         |  email [Email User Login]                                           | Removes admin right from the user (cannot be done on self)                                                             |
 | /api/lobby/[id]         | PATCH  | id          | x-auth-token   | email [Email User Login]      | Edit a message. Users can only edit their own messages, unless they are admins.                                        |
 | /api/lobby/[id]         | DELETE | id          | x-auth-token   |  email [Email User Login]                                             | Delete a message. Users can only edit their own messages, unless they are admins.                                      |
-
-
-## Licence
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
 
