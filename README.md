@@ -60,17 +60,17 @@ L'API backend offre plusieurs endpoints pour interagir avec les données de l'ap
 
 | Endpoint                | Method | Params | Heeaders |  Body                                   | Response                                                                                                               |
 | ----------------------- | ------ | ------------- | ---------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| /api/register           | POST   |    -           |   -         | email , user_name , password| A message stating the user has been created                                          |
+| /api/register           | POST   |              |           | email , user_name , password| A message stating the user has been created                                          |
 | /api/login              | POST   |               |            |email, passwo | A JSON Data                                                                     |
 | /api/lobby              | POST   |   house        |  x-auth-token   | -   email [Email User Login]                                  | An array containing all the message from the lobby                                                                     |
 | /api/lobby/[id]         | POST    | id           |    x-auth-token         |    email [Email User Login]                             | A single message object from the lobby                                                                                 |
-| /api/lobby              | POST   |  -           |   x-auth-token        | content : , email:             | A message stating the message has been posted                                        |
-| /api/users              | GET    | yes           | (yes)\*    | -                                            | A list of users, if the user is an admin gets all the registered users, if not only gets the users from the same house |
-| /api/users/[id]         | GET    | yes           |            | -                                            | A single user. If the user is not an admin, can only get details from people that are in the same house.               |
-| /api/users/[id]/promote | POST   | yes           | yes        | -                                            | Gives admin right to the user                                                                                          |
-| /api/users/[id]/demote  | POST   | yes           | yes        | -                                            | Removes admin right from the user (cannot be done on self)                                                             |
-| /api/lobby/[id]         | PATCH  | yes           | (yes)\*\*  | An object containing the message patches     | Edit a message. Users can only edit their own messages, unless they are admins.                                        |
-| /api/lobby/[id]         | DELETE | yes           | (yes)\*\*  | -                                            | Delete a message. Users can only edit their own messages, unless they are admins.                                      |
+| /api/lobby              | POST   |            |   x-auth-token        | content : , email:             | A message stating the message has been posted                                        |
+| /api/users              | GET    | yes           | x-auth-token   |                                             | A list of users, if the user is an admin gets all the registered users, if not only gets the users from the same house |
+| /api/users/[id]         | GET    | yes           |   x-auth-token          | -                                            | A single user. If the user is not an admin, can only get details from people that are in the same house.               |
+| /api/users/[id]/promote | POST   | yes           | x-auth-token         | -                                            | Gives admin right to the user                                                                                          |
+| /api/users/[id]/demote  | POST   | yes           | x-auth-token         | -                                            | Removes admin right from the user (cannot be done on self)                                                             |
+| /api/lobby/[id]         | PATCH  | yes           | x-auth-token   | An object containing the message patches     | Edit a message. Users can only edit their own messages, unless they are admins.                                        |
+| /api/lobby/[id]         | DELETE | yes           | x-auth-token   | -                                            | Delete a message. Users can only edit their own messages, unless they are admins.                                      |
 
 
 ## Licence
