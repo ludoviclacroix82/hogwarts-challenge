@@ -13,7 +13,7 @@ Hogwarts-challenge est une application de chat en temps réel inspirée de l'uni
 ### Backend
 1. Clone le dépôt :
     ```bash
-    git clone https://github.com/ton-utilisateur/hogwarts-chat.git
+    git clone git@github.com:ludoviclacroix82/hogwarts-challenge.git
     cd hogwarts-chat/backend
     ```
 2. Installe les dépendances :
