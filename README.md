@@ -27,7 +27,7 @@ Hogwarts-challenge est une application de chat en temps réel inspirée de l'uni
     PORT=port
     LEVEL_HASH_PWD=level hash
     SECRETKEY=secret key
-    EXPIRESTOKEN=1h
+    EXPIRESTOKEN= Token expiration (in hours)
     ```
 4. Démarre le serveur :
     ```bash
