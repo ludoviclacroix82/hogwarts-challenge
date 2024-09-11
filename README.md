@@ -33,7 +33,7 @@ Hogwarts-challenge est une application de chat en temps réel inspirée de l'uni
     ```
 4. Démarre le serveur :
     ```bash
-    npm start
+    npm start server.js
     ```
 
 ### Frontend
@@ -47,21 +47,31 @@ Hogwarts-challenge est une application de chat en temps réel inspirée de l'uni
     ```
 3. Démarre l'application Vue.js :
     ```bash
-    npm run serve
+    npm run build
+    npm run preview
     ```
 
 ## Utilisation
-Une fois le serveur backend et l'application frontend démarrés, ouvre ton navigateur et va à l'adresse suivante :
-
+Une fois le serveur backend et l'application frontend démarrés
 Tu pourras alors commencer à chatter en temps réel avec d'autres utilisateurs.
 
-## API
-L'API backend offre plusieurs endpoints pour interagir avec les données de l'application. Voici quelques exemples :
+##  API Documentation
+L'API backend offre plusieurs endpoints pour interagir avec les données de l'application.:
 
-- `GET /api/messages` : Récupère la liste des messages.
-- `POST /api/messages` : Envoie un nouveau message.
-- `GET /api/users` : Récupère la liste des utilisateurs.
-- `POST /api/users` : Crée un nouvel utilisateur.
+| Endpoint                | Method | Params | Heeaders |  Body                                   | Response                                                                                                               |
+| ----------------------- | ------ | ------------- | ---------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| /api/register           | POST   |    -           |   -         | email , user_name , password| A message stating the user has been created                                          |
+| /api/login              | POST   |               |            |email, passwo | A JSON Data                                                                     |
+| /api/lobby              | POST   |   house        |  x-auth-token   | -   email [Email User Login]                                  | An array containing all the message from the lobby                                                                     |
+| /api/lobby/[id]         | POST    | id           |    x-auth-token         |    email [Email User Login]                             | A single message object from the lobby                                                                                 |
+| /api/lobby              | POST   |  -           |   x-auth-token        | content : , email:             | A message stating the message has been posted                                        |
+| /api/users              | GET    | yes           | (yes)\*    | -                                            | A list of users, if the user is an admin gets all the registered users, if not only gets the users from the same house |
+| /api/users/[id]         | GET    | yes           |            | -                                            | A single user. If the user is not an admin, can only get details from people that are in the same house.               |
+| /api/users/[id]/promote | POST   | yes           | yes        | -                                            | Gives admin right to the user                                                                                          |
+| /api/users/[id]/demote  | POST   | yes           | yes        | -                                            | Removes admin right from the user (cannot be done on self)                                                             |
+| /api/lobby/[id]         | PATCH  | yes           | (yes)\*\*  | An object containing the message patches     | Edit a message. Users can only edit their own messages, unless they are admins.                                        |
+| /api/lobby/[id]         | DELETE | yes           | (yes)\*\*  | -                                            | Delete a message. Users can only edit their own messages, unless they are admins.                                      |
+
 
 ## Licence
 Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
